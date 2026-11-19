@@ -1,0 +1,167 @@
+{
+  "data": {
+    "orders_raw": 99441,
+    "orders_master": 98666,
+    "delivered_modeled": 96427,
+    "late_rate": 0.0807
+  },
+  "sql_review_by_lateness": [
+    {
+      "is_late": 0,
+      "n": 88644,
+      "avg_review": 4.29,
+      "pct_negative": 9.2
+    },
+    {
+      "is_late": 1,
+      "n": 7783,
+      "avg_review": 2.56,
+      "pct_negative": 54.1
+    }
+  ],
+  "stats": {
+    "mannwhitney_review_late_vs_ontime": {
+      "p": 0.0,
+      "rank_biserial": 0.554,
+      "mean_late": 2.56,
+      "mean_ontime": 4.29
+    },
+    "chi2_same_state_vs_late": {
+      "chi2": 298.2,
+      "p": 8.190227769811752e-67,
+      "late_pct_same": 6.05,
+      "late_pct_diff": 9.21
+    },
+    "spearman_distance_vs_days": {
+      "rho": 0.541,
+      "p": 0.0
+    }
+  },
+  "models": [
+    {
+      "model": "Logistic Regression",
+      "roc_auc": 0.714,
+      "pr_auc": 0.1849,
+      "threshold": 0.6113,
+      "precision": 0.1869,
+      "recall": 0.4374,
+      "f1": 0.2619
+    },
+    {
+      "model": "Random Forest",
+      "roc_auc": 0.7944,
+      "pr_auc": 0.2954,
+      "threshold": 0.3827,
+      "precision": 0.2996,
+      "recall": 0.4682,
+      "f1": 0.3654
+    },
+    {
+      "model": "XGBoost",
+      "roc_auc": 0.799,
+      "pr_auc": 0.3062,
+      "threshold": 0.6672,
+      "precision": 0.3108,
+      "recall": 0.4701,
+      "f1": 0.3742
+    }
+  ],
+  "baseline_late_rate_test": 0.0807,
+  "best_model": "XGBoost",
+  "shap_top": {
+    "purchase_m": 0.5929999947547913,
+    "estimated_days": 0.5519999861717224,
+    "distance_km": 0.2540000081062317,
+    "customer_state_SP": 0.16699999570846558,
+    "approval_hours": 0.14800000190734863,
+    "customer_state_MG": 0.11699999868869781,
+    "same_state": 0.11599999666213989,
+    "customer_state_RJ": 0.09600000083446503,
+    "freight": 0.09200000017881393,
+    "seller_state_SP": 0.07400000095367432
+  },
+  "segmentation": {
+    "k": 4,
+    "silhouette_k": 0.294,
+    "profiles": [
+      {
+        "cluster": 0,
+        "customers": 48767,
+        "recency": 243.64,
+        "frequency": 1.0,
+        "monetary": 211.76,
+        "avg_review": 4.73,
+        "freight_ratio": 0.17,
+        "segment": "High-value one-time",
+        "share_pct": 51.3
+      },
+      {
+        "cluster": 1,
+        "customers": 16929,
+        "recency": 251.88,
+        "frequency": 1.0,
+        "monetary": 183.16,
+        "avg_review": 1.73,
+        "freight_ratio": 0.25,
+        "segment": "Dissatisfied",
+        "share_pct": 17.8
+      },
+      {
+        "cluster": 2,
+        "customers": 26406,
+        "recency": 239.58,
+        "frequency": 1.0,
+        "monetary": 53.87,
+        "avg_review": 4.52,
+        "freight_ratio": 0.6,
+        "segment": "Low-value one-time",
+        "share_pct": 27.8
+      },
+      {
+        "cluster": 3,
+        "customers": 2887,
+        "recency": 226.57,
+        "frequency": 2.11,
+        "monetary": 308.41,
+        "avg_review": 4.16,
+        "freight_ratio": 0.32,
+        "segment": "Repeat buyers",
+        "share_pct": 3.0
+      }
+    ]
+  },
+  "nlp": {
+    "n_reviews": 35491,
+    "pct_positive": 74.0,
+    "roc_auc": 0.9753,
+    "f1_macro": 0.9164,
+    "top_negative_terms": [
+      "nao",
+      "comprei",
+      "nao recomendo",
+      "nao recebi",
+      "pessima",
+      "pessimo",
+      "demora",
+      "quebrado",
+      "diferente",
+      "inferior"
+    ],
+    "top_positive_terms": [
+      "recomendo",
+      "lindo",
+      "parabens",
+      "rapida",
+      "tudo",
+      "antes",
+      "rapido",
+      "amei",
+      "obrigada",
+      "excelente"
+    ],
+    "late_vs_neg_share": {
+      "late_neg_pct": 74.7,
+      "ontime_neg_pct": 20.1
+    }
+  }
+}
